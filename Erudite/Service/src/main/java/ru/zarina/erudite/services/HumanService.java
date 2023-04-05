@@ -7,30 +7,34 @@ import ru.zarina.erudite.entities.Human;
 import ru.zarina.erudite.mapping.EntitiesMapping;
 import ru.zarina.erudite.repositories.HumanRepository;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class HumanService {
-    private final int MAXIMUM_AGE = 110;
     private final HumanRepository humanRepository;
     @Autowired
     public HumanService(HumanRepository humanRepository) {
         this.humanRepository = humanRepository;
     }
 
-    public HumanDto findHuman(String name) {
+    public HumanDto findHuman(String name) throws Exception {
         var human = humanRepository.findById(name);
-
         if (human.isEmpty()) {
-            return addHuman(name);
+            throw new Exception("Couldn't find entity with name " + name);
         }
 
         return EntitiesMapping.asDto(human.get());
     }
-    public HumanDto addHuman(String name) {
+    public HumanDto addHuman(String name, Integer age) throws Exception {
+        if (humanRepository.findById(name).isPresent()) {
+            throw new Exception("Entity with name " + name + " already exists.");
+        }
 
-        Random random = new Random();
-        Human human = new Human(name, random.nextInt(MAXIMUM_AGE));
+        if (age == null) {
+            age = ThreadLocalRandom.current().nextInt(Human.MINIMUM_AGE, Human.MAXIMUM_AGE + 1);
+        }
+
+        Human human = new Human(name, age);
 
         humanRepository.save(human);
 
