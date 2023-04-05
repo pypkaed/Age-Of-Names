@@ -3,6 +3,9 @@ package ru.zarina.erudite.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.zarina.erudite.dtos.HumanDto;
+import ru.zarina.erudite.exceptions.FileServiceException;
+import ru.zarina.erudite.exceptions.FileServiceExceptionHandler;
+import ru.zarina.erudite.exceptions.HumanServiceException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,39 +17,27 @@ import java.util.regex.Pattern;
 
 @Service
 public class FileService {
-    private static final String ENTRY_PATTERN = "^[A-Za-z]+_[\\d]+$";
+    private static final String ENTRY_PATTERN = "^[A-Za-z]+_\\d+$";
     private final HumanService humanService;
     @Autowired
     public FileService(HumanService humanService) {
         this.humanService = humanService;
     }
 
-    public List<HumanDto> parseFile(InputStream inputStream) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-            List<HumanDto> entries = new ArrayList<>();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                try {
-                    if (!Pattern.matches(ENTRY_PATTERN, line)) {
-                        throw new IllegalArgumentException("The entry " + line + " should match the pattern " + ENTRY_PATTERN);
-                    }
-                    String[] fields = line.split("_");
-
-
-                    try {
-                        entries.add(humanService.addHuman(fields[0], Integer.parseInt(fields[1])));
-                    }
-                    catch (Exception e) {
-                        System.err.println("Error: " + e.getMessage() + " Skipping over.");
-                    }
-                } catch (Exception e) {
-                    System.err.println("Error occurred while parsing line: " + line + ". Error: " + e.getMessage());
-                }
+    public HumanDto parseLine(String line) throws FileServiceException, IOException {
+            if (!Pattern.matches(ENTRY_PATTERN, line)) {
+                throw new IllegalArgumentException("The entry " + line + " should match the pattern " + ENTRY_PATTERN);
             }
-            return entries;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            HumanDto humanEntry;
+
+            String[] fields = line.split("_");
+
+            try {
+                humanEntry = humanService.addHuman(fields[0], Integer.parseInt(fields[1]));
+            }
+            catch (HumanServiceException e) {
+                throw FileServiceExceptionHandler.handleHumanServiceException(e);
+            }
+        return humanEntry;
     }
 }

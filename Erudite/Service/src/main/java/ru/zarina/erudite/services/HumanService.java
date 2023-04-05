@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.zarina.erudite.dtos.HumanDto;
 import ru.zarina.erudite.entities.Human;
+import ru.zarina.erudite.exceptions.HumanServiceException;
 import ru.zarina.erudite.mapping.EntitiesMapping;
 import ru.zarina.erudite.repositories.HumanRepository;
 
@@ -17,17 +18,17 @@ public class HumanService {
         this.humanRepository = humanRepository;
     }
 
-    public HumanDto findHuman(String name) throws Exception {
-        var human = humanRepository.findById(name);
+    public HumanDto findHuman(String name) throws HumanServiceException {
+        var human = humanRepository.findByNameIgnoreCase(name);
         if (human.isEmpty()) {
-            throw new Exception("Couldn't find entity with name " + name);
+            throw HumanServiceException.EntityNotFound(name);
         }
 
         return EntitiesMapping.asDto(human.get());
     }
-    public HumanDto addHuman(String name, Integer age) throws Exception {
-        if (humanRepository.findById(name).isPresent()) {
-            throw new Exception("Entity with name " + name + " already exists.");
+    public HumanDto addHuman(String name, Integer age) throws HumanServiceException {
+        if (humanRepository.findByNameIgnoreCase(name).isPresent()) {
+            throw HumanServiceException.EntityDuplicate(name);
         }
 
         if (age == null) {
@@ -35,7 +36,6 @@ public class HumanService {
         }
 
         Human human = new Human(name, age);
-
         humanRepository.save(human);
 
         return EntitiesMapping.asDto(human);

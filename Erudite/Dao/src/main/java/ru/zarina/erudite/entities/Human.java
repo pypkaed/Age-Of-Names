@@ -23,7 +23,7 @@ public class Human {
     @Column(name = "age")
     private Integer age;
 
-    public Human(String name, Integer age) throws Exception {
+    public Human(String name, Integer age) {
         validateName(name);
         if (age < MINIMUM_AGE || age > MAXIMUM_AGE) {
             throw new IllegalArgumentException("Age should be in range (" + MINIMUM_AGE + ", " + MAXIMUM_AGE + ")");
