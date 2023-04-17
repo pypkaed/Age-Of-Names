@@ -12,6 +12,6 @@ export class AppService {
   ) { }
 
   getName(name: string) {
-    return this.http.get(this.rootURL)
+    return this.http.get(name)
   }
 }
