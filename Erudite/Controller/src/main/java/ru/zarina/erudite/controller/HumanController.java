@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/humans")
 public class HumanController {
     private final HumanService humanService;
@@ -33,7 +34,7 @@ public class HumanController {
         exceptionHandler = new ControllerExceptionHandler();
     }
 
-    @GetMapping("/human")
+    @GetMapping()
     public ResponseEntity<HumanDto> findHuman(@RequestParam("name") String name) {
         HumanDto human = null;
 
