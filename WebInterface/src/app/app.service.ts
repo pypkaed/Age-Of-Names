@@ -5,13 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AppService {
-  rootURL = '/humans';
-
   constructor(
     private http: HttpClient,
   ) { }
 
-  getName(name: string) {
-    return this.http.get(name)
+  public getName(name: string) {
+    return this.http.get('/humans?name=' + name);
   }
 }

@@ -18,7 +18,9 @@ export class AppComponent {
   ) { }
 
   onSubmit() {
-    this.appService.getName(<string> this.nameForm.value)
+    this.appService.getName(<string> this.nameForm.value.name).subscribe(response => {
+      window.alert(response);
+    });
     this.nameForm.reset();
   }
 
