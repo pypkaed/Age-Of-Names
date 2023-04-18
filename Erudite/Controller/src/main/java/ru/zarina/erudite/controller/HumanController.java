@@ -80,7 +80,7 @@ public class HumanController {
             return ResponseEntity.ok(response);
         }
         else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(response);
         }
     }
 }

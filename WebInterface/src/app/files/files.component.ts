@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FilesService } from "./files.service";
 import { FileUploadResponseModel } from "./file.upload.response.model";
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
+import {ERRORS} from "../../errors";
 
 @Component({
   selector: 'app-files',
@@ -30,7 +31,7 @@ export class FilesComponent {
           this.uploadResponse = response;
         },
           (error: HttpErrorResponse) => {
-          if (error.status === 400) {
+          if (error.status === ERRORS.UNPROCESSABLE_ENTITY) {
             this.uploadResponse = error.error;
           }
           else {

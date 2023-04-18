@@ -1,0 +1,3 @@
+export enum ERRORS {
+  UNPROCESSABLE_ENTITY = 422,
+}
