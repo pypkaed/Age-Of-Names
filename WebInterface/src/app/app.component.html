@@ -1,12 +1,4 @@
-<form [formGroup]="nameForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">
-      Name
-    </label>
-    <input id="name" type="text" formControlName="name">
+<app-top-bar></app-top-bar>
 
-    <button type="submit">
-      Send
-    </button>
-  </div>
-</form>
+<app-names></app-names>
+<app-files></app-files>

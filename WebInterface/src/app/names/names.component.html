@@ -1,0 +1,13 @@
+<form [formGroup]="nameForm" (ngSubmit)="onSubmit()">
+  <div>
+    <input id="name" placeholder="Enter name" type="text" formControlName="name">
+    <button type="submit">
+      Find
+    </button>
+  </div>
+
+  <div *ngIf="human">
+    <h2>Name: {{ human.name }}</h2>
+    <p>Age: {{ human.age }}</p>
+  </div>
+</form>

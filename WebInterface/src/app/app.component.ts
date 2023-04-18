@@ -1,6 +1,4 @@
-import {Component} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
-import { AppService } from "./app.service";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +6,5 @@ import { AppService } from "./app.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  nameForm = this.formBuilder.group({
-    name: '',
-  })
-
-  constructor(
-    private appService: AppService,
-    private formBuilder: FormBuilder,
-  ) { }
-
-  onSubmit() {
-    this.appService.getName(<string> this.nameForm.value.name).subscribe(response => {
-      window.alert(response);
-    });
-    this.nameForm.reset();
-  }
 
 }
