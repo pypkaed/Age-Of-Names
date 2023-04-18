@@ -1,11 +1,14 @@
 <h1>List of registered names</h1>
 
-<ng-container *ngIf="humans">
-  <div *ngFor="let human of humans">
-    <p>Name: {{ human.name }}</p>
-    <p>Age: {{ human.age }}</p>
-  </div>
+<ng-container *ngIf="humans.length == 0">
+  <p>No entries added yet. You can <a href="/upload">upload</a> or <a href="/search">search</a> for a name</p>
 </ng-container>
-<ng-container *ngIf="!humans">
-  <p>No entries added yet. You can upload or search for a name here</p>
-</ng-container>
+<div class="list" *ngIf="humans.length > 0">
+  <ul>
+    <li *ngFor="let human of humans | paginate: {itemsPerPage: 10, currentPage: p}">
+      <p>Name: {{ human.name }}, Age: {{ human.age }}</p>
+    </li>
+  </ul>
+
+  <pagination-controls *ngIf="humans.length > 10" (pageChange)="p = $event"></pagination-controls>
+</div>

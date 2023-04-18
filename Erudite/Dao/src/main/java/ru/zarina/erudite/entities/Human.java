@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 @NoArgsConstructor
 
 public class Human {
-    private static final String HUMAN_NAME_PATTERN = "^[A-Za-z]+$";
+    private static final String HUMAN_NAME_PATTERN = "^[A-Za-zА-Яа-яЕеЁё]+$";
     public static final int MAXIMUM_AGE = 110;
     public static final int MINIMUM_AGE = 1;
     @Id

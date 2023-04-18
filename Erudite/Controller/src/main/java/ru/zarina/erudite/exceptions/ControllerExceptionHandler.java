@@ -34,7 +34,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = { HumanServiceException.class })
     @ResponseBody
     public ResponseEntity<String> handleHumanServiceException(HumanServiceException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("An error has occurred: " + e.getMessage());
     }
 

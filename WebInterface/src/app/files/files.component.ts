@@ -37,6 +37,6 @@ export class FilesComponent {
           else {
             console.error(error);
           }
-          })
+        })
   }
 }

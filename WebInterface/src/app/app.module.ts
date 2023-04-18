@@ -1,8 +1,9 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { NamesComponent } from './names/names.component';
@@ -22,6 +23,7 @@ import { NamesListComponent } from './names-list/names-list.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     RouterModule.forRoot([
       {path: 'search', component: NamesComponent},
       {path: 'upload', component: FilesComponent},
