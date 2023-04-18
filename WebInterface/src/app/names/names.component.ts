@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from "@angular/forms";
 import { NamesService } from "./names.service";
-import { HumanModel } from "../human.model";
+import { HumanModel } from "../../assets/human.model";
 
 @Component({
   selector: 'app-names',

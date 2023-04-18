@@ -1,4 +1,4 @@
-import {HumanModel} from "../human.model";
+import {HumanModel} from "./human.model";
 
 export class FileUploadResponseModel {
   "humanDtos": HumanModel[];

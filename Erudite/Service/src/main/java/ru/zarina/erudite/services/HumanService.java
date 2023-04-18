@@ -8,6 +8,7 @@ import ru.zarina.erudite.exceptions.HumanServiceException;
 import ru.zarina.erudite.mapping.EntitiesMapping;
 import ru.zarina.erudite.repositories.HumanRepository;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
@@ -25,6 +26,10 @@ public class HumanService {
         }
 
         return EntitiesMapping.asDto(human.get());
+    }
+    public List<HumanDto> findAll() {
+        var humans = humanRepository.findAll();
+        return EntitiesMapping.asDto(humans);
     }
     public HumanDto addHuman(String name, Integer age) throws HumanServiceException {
         if (humanRepository.findByNameIgnoreCase(name).isPresent()) {

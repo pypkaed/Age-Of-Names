@@ -8,6 +8,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NamesComponent } from './names/names.component';
 import { FilesComponent } from './files/files.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { NamesListComponent } from './names-list/names-list.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,16 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     NamesComponent,
     FilesComponent,
     TopBarComponent,
+    NamesListComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: '', component: AppComponent},
+      {path: 'search', component: NamesComponent},
+      {path: 'upload', component: FilesComponent},
+      {path: 'list', component: NamesListComponent},
     ]),
     FormsModule,
   ],

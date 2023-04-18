@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {FileUploadResponseModel} from "./file.upload.response.model";
+import {FileUploadResponseModel} from "../../assets/file.upload.response.model";
 
 @Injectable({
   providedIn: 'root'

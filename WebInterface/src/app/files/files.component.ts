@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FilesService } from "./files.service";
-import { FileUploadResponseModel } from "./file.upload.response.model";
+import { FileUploadResponseModel } from "../../assets/file.upload.response.model";
 import { HttpErrorResponse } from "@angular/common/http";
-import {ERRORS} from "../../errors";
+import { ERRORS } from "../../assets/errors";
 
 @Component({
   selector: 'app-files',

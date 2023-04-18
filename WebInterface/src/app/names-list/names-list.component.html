@@ -1,0 +1,11 @@
+<h1>List of registered names</h1>
+
+<ng-container *ngIf="humans">
+  <div *ngFor="let human of humans">
+    <p>Name: {{ human.name }}</p>
+    <p>Age: {{ human.age }}</p>
+  </div>
+</ng-container>
+<ng-container *ngIf="!humans">
+  <p>No entries added yet. You can upload or search for a name here</p>
+</ng-container>

@@ -52,6 +52,12 @@ public class HumanController {
 
         return ResponseEntity.ok(human);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<HumanDto>> findAll() {
+        return ResponseEntity.ok(humanService.findAll());
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<FileUploadResponse> uploadFile(@RequestParam("file") MultipartFile file) {
         List<HumanDto> humanDtos = new ArrayList<>();
