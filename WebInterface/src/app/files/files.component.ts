@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FilesService } from "./files.service";
 import { FileUploadResponseModel } from "./file.upload.response.model";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-files',
@@ -27,6 +28,14 @@ export class FilesComponent {
     this.filesService.uploadFile(this.uploadFormData)
         .subscribe((response: FileUploadResponseModel) => {
           this.uploadResponse = response;
-        });
+        },
+          (error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            this.uploadResponse = error.error;
+          }
+          else {
+            console.error(error);
+          }
+          })
   }
 }

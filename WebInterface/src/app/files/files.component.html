@@ -7,3 +7,9 @@
     </button>
   </div>
 </form>
+
+<div *ngIf="uploadResponse && uploadResponse.errors">
+  <p class="error" *ngFor="let error of uploadResponse.errors">
+    {{ error }}
+  </p>
+</div>

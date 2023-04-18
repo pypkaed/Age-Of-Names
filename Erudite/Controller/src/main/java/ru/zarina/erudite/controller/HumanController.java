@@ -82,6 +82,5 @@ public class HumanController {
         else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
-
     }
 }
