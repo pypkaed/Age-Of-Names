@@ -7,17 +7,19 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { NamesComponent } from './names/names.component';
-import { FilesComponent } from './files/files.component';
+import { UploadComponent } from './upload/upload.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { NamesListComponent } from './names-list/names-list.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NamesComponent,
-    FilesComponent,
+    UploadComponent,
     TopBarComponent,
     NamesListComponent,
+    WelcomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +27,9 @@ import { NamesListComponent } from './names-list/names-list.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     RouterModule.forRoot([
+      {path: '', component: WelcomePageComponent},
       {path: 'search', component: NamesComponent},
-      {path: 'upload', component: FilesComponent},
+      {path: 'upload', component: UploadComponent},
       {path: 'list', component: NamesListComponent},
     ]),
     FormsModule,

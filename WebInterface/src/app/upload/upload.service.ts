@@ -5,7 +5,7 @@ import {FileUploadResponseModel} from "../../assets/file.upload.response.model";
 @Injectable({
   providedIn: 'root'
 })
-export class FilesService {
+export class UploadService {
   constructor(
     private http: HttpClient,
   ) { }

@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
-import { FilesService } from "./files.service";
+import { UploadService } from "./upload.service";
 import { FileUploadResponseModel } from "../../assets/file.upload.response.model";
 import { HttpErrorResponse } from "@angular/common/http";
 import { ERRORS } from "../../assets/errors";
 
 @Component({
   selector: 'app-files',
-  templateUrl: './files.component.html',
-  styleUrls: ['./files.component.css']
+  templateUrl: './upload.component.html',
+  styleUrls: ['./upload.component.css']
 })
-export class FilesComponent {
+export class UploadComponent {
   uploadResponse!: FileUploadResponseModel;
   file!: File;
   uploadFormData!: FormData;
   // errorsLog!: any;
 
   constructor(
-    private filesService: FilesService,
+    private filesService: UploadService,
   ) { }
 
 

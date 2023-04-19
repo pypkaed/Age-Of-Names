@@ -6,11 +6,25 @@ body {
   color: #ffffff;
 }
 
-/* text */
+button {
+  display: flex;
+  background-color: #6075cc;
+  padding: 2% 5% 2% 5%;
+  margin: 2% auto 0 auto;
+  border-radius: 10px;
+  color: white;
+}
 
-a {
-  color: #ffffff;
-  text-decoration: none;
+button:hover {
+  background-color: #798fe8;
+  cursor: grab;
+}
+
+/* custom */
+
+.human-found {
+  text-align: center;
+  font-size: large;
 }
 
 .error {
@@ -42,7 +56,27 @@ a {
   background-color: #f1f1f1;
 }
 
+.upload-rules {
+  margin: 1%;
+  text-align: center;
+  border: 3px solid;
+  border-radius: 10px;
+  background-color: rgba(156, 188, 243, 0.24);
+}
+
 /* components */
+
+app-welcome-page {
+  text-align: center;
+}
+
+app-welcome-page a {
+  color: #ffffff;
+}
+
+app-welcome-page a:hover {
+  color: #6075cc;
+}
 
 app-top-bar {
   height: 2%;
@@ -54,9 +88,26 @@ app-top-bar {
   align-items: center;
 }
 
+app-top-bar a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 app-names {
   margin: 10%;
 }
+
+app-names-list {
+  text-align: center;
+}
+
+app-names-list ul {
+  margin: 0;
+  display: inline-block;
+  text-align: left;
+}
+
+/* forms */
 
 input[type=text] {
   width: 80%;
@@ -94,38 +145,9 @@ input::file-selector-button {
 
 }
 
-button {
-  display: flex;
-  background-color: #6075cc;
-  padding: 2% 5% 2% 5%;
-  margin: 2% auto 0 auto;
-  border-radius: 10px;
-  color: white;
-}
-
-button:hover {
-  background-color: #798fe8;
-  cursor: grab;
-}
-
-app-names-list {
-  text-align: center;
-}
-
-app-names-list ul {
-  margin: 0;
-  display: inline-block;
-  text-align: left;
-}
-
-.human-found {
-  text-align: center;
-  font-size: large;
-}
-
 /* ngx pagination */
 
-.ngx-pagination span, a {
+.ngx-pagination span, .ngx-pagination a {
   color: #ffffff !important;
 }
 
