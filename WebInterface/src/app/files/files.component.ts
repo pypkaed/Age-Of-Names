@@ -13,6 +13,7 @@ export class FilesComponent {
   uploadResponse!: FileUploadResponseModel;
   file!: File;
   uploadFormData!: FormData;
+  // errorsLog!: any;
 
   constructor(
     private filesService: FilesService,
@@ -38,5 +39,12 @@ export class FilesComponent {
             console.error(error);
           }
         })
+  }
+
+  toggleLog() {
+    this.uploadResponse = {
+      ...this.uploadResponse,
+      expanded: !this.uploadResponse.expanded
+    }
   }
 }

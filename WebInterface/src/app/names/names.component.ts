@@ -34,7 +34,7 @@ export class NamesComponent {
             this.error = error.error;
           }
           else {
-            console.error(error);
+            this.error = error.message;
           }
         });
 

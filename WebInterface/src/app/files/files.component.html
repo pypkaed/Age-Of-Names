@@ -1,15 +1,26 @@
 <form (ngSubmit)="onSubmit()">
   <div>
-    Upload niggers
     <input type="file" accept="text/plain" (change)="onFileSelected($event)">
-    <button type="submit">
+    <button class="upload-button" type="submit">
       Upload
     </button>
   </div>
 </form>
 
 <div *ngIf="uploadResponse && uploadResponse.errors">
-  <p class="error" *ngFor="let error of uploadResponse.errors">
-    {{ error }}
-  </p>
+  <div (click)="toggleLog()">
+    <div *ngIf="!uploadResponse.expanded" class="collapsible">
+      <p>Open errors log</p>
+    </div>
+    <div *ngIf="uploadResponse.expanded" class="collapsible">
+      <p>Close errors log</p>
+    </div>
+    <div *ngIf="uploadResponse.expanded" class="error">
+      <p *ngFor="let error of uploadResponse.errors">
+        {{ error }}
+      </p>
+    </div>
+  </div>
+
+
 </div>
