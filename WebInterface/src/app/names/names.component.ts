@@ -31,6 +31,7 @@ export class NamesComponent {
       },
         (error: HttpErrorResponse) => {
           if (error.status === ERRORS.BAD_REQUEST) {
+            // TODO: an html page response with characters not supported by Tomcat
             this.error = error.error;
           }
           else {
