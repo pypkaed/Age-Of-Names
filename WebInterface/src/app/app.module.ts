@@ -9,9 +9,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { NamesComponent } from './names/names.component';
 import { UploadComponent } from './upload/upload.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { NamesListComponent } from './names-list/names-list.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { StatsComponent } from './stats/stats.component';
+import { FilteringComponent } from './filtering/filtering.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { StatsComponent } from './stats/stats.component';
     NamesComponent,
     UploadComponent,
     TopBarComponent,
-    NamesListComponent,
     WelcomePageComponent,
     StatsComponent,
+    FilteringComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +32,8 @@ import { StatsComponent } from './stats/stats.component';
       {path: '', component: WelcomePageComponent},
       {path: 'search', component: NamesComponent},
       {path: 'upload', component: UploadComponent},
+      {path: 'filtering', component: FilteringComponent},
       {path: 'stats', component: StatsComponent},
-      {path: 'list', component: NamesListComponent},
     ]),
     FormsModule,
   ],

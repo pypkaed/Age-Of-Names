@@ -1,0 +1,26 @@
+<select [(ngModel)]="selectFilter">
+  <option value="oldest">Oldest</option>
+  <option value="youngest">Youngest</option>
+  <option value="olderThan_">Older than...</option>
+  <option value="youngerThan_">Younger than...</option>
+  <option value="nameLength_">Name length of...</option>
+  <option value="nameLengthGreaterThan_">Name length greater than...</option>
+  <option value="nameLengthLessThan_">Name length less than...</option>
+</select>
+
+<div *ngIf="selectFilter && selectFilter.endsWith('_')">
+  <form [formGroup]="filterValueForm">
+    <input formControlName="value" type="number">
+  </form>
+</div>
+
+<button type="submit" (click)="onSubmit()">Submit</button>
+
+<div *ngIf="humans && humans.length > 0">
+  <div *ngFor="let human of humans | paginate: {itemsPerPage: 10, currentPage: p}">
+    <h2>Name: {{ human.name }}</h2>
+    <p>Age: {{ human.age }}</p>
+  </div>
+</div>
+
+<pagination-controls *ngIf="humans && humans.length > 10" (pageChange)="p = $event"></pagination-controls>

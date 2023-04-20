@@ -1,5 +1,15 @@
-<div *ngIf="stats">
-  <div *ngFor="let stat of stats | keyvalue">
-    <p>{{ stat.key }}: {{ stat.value }}</p>
-  </div>
+<h1>Search statistics</h1>
+
+<ng-container *ngIf="stats && Object.keys(stats).length === 0">
+  <p>No entries added yet. You can <a href="/upload">upload</a> or <a href="/search">search</a> for a name</p>
+</ng-container>
+
+<div class="list" *ngIf="stats && Object.keys(stats).length > 0">
+  <ul>
+    <li *ngFor="let stat of stats | keyvalue | paginate: {itemsPerPage: 10, currentPage: p}">
+      <p>Name: {{ stat.key }}, Searched: {{ stat.value }} times</p>
+    </li>
+  </ul>
 </div>
+
+<pagination-controls *ngIf="stats && Object.keys(stats).length > 10" (pageChange)="p = $event"></pagination-controls>

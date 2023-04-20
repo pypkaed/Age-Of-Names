@@ -11,7 +11,7 @@ export class NamesService {
   ) { }
 
   public getName(name: string) {
-    return this.http.get<HumanModel>('/humans?name=' + name);
+    return this.http.get<HumanModel>('/humans/search?name=' + name);
   }
 
   public getAllNames() {
