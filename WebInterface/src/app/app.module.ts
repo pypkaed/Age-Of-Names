@@ -11,6 +11,7 @@ import { UploadComponent } from './upload/upload.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { NamesListComponent } from './names-list/names-list.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     TopBarComponent,
     NamesListComponent,
     WelcomePageComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
       {path: '', component: WelcomePageComponent},
       {path: 'search', component: NamesComponent},
       {path: 'upload', component: UploadComponent},
+      {path: 'stats', component: StatsComponent},
       {path: 'list', component: NamesListComponent},
     ]),
     FormsModule,

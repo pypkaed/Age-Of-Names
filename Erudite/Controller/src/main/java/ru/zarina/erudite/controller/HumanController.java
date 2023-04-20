@@ -17,7 +17,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -26,12 +28,15 @@ public class HumanController {
     private final HumanService humanService;
     private final FileService fileService;
     private final ControllerExceptionHandler exceptionHandler;
+    private final Map<String, Integer> requestsPerName;
 
     @Autowired
     public HumanController(HumanService humanService, FileService fileService) {
         this.humanService = humanService;
         this.fileService = fileService;
         exceptionHandler = new ControllerExceptionHandler();
+
+        requestsPerName = new HashMap<>();
     }
 
     @GetMapping()
@@ -40,10 +45,12 @@ public class HumanController {
 
         try {
             human = humanService.findHuman(name);
+            requestsPerName.put(name, requestsPerName.get(name) + 1);
         }
         catch (HumanServiceException e) {
             try {
                 human = humanService.addHuman(name, null);
+                requestsPerName.put(name, 1);
             }
             catch (HumanServiceException ex) {
                 exceptionHandler.handleHumanServiceException(ex);
@@ -56,6 +63,11 @@ public class HumanController {
     @GetMapping("/all")
     public ResponseEntity<List<HumanDto>> findAll() {
         return ResponseEntity.ok(humanService.findAll());
+    }
+
+    @GetMapping("/stats")
+    public Map<String, Integer> getRequestsPerName() {
+        return requestsPerName;
     }
 
     @PostMapping("/upload")
@@ -78,7 +90,6 @@ public class HumanController {
         catch (IOException e) {
             exceptionHandler.handleIOException(e);
         }
-
 
         var response = new FileUploadResponse(humanDtos, errors);
 

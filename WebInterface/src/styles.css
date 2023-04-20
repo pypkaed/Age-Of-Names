@@ -74,7 +74,7 @@ app-welcome-page a {
   color: #ffffff;
 }
 
-app-welcome-page a:hover {
+app-welcome-page a:hover, app-names-list a:hover {
   color: #6075cc;
 }
 

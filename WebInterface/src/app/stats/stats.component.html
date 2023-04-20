@@ -1,0 +1,5 @@
+<div *ngIf="stats">
+  <div *ngFor="let stat of stats | keyvalue">
+    <p>{{ stat.key }}: {{ stat.value }}</p>
+  </div>
+</div>
